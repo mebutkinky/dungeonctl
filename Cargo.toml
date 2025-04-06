@@ -1,0 +1,34 @@
+[package]
+name = "dungeonctl"
+version = "0.1.0"
+edition = "2024"
+description = "Control smart electronic toys created by DG-LAB"
+repository = "https://github.com/mebutkinky/dungeonctl"
+license = "MIT OR Apache-2.0"
+keywords = ["dg-lab", "coyote", "estim", "e-stim", "bluetooth"]
+categories = ["api-bindings", "hardware-support"]
+
+[features]
+default = []
+coyote3 = []
+# pawprints = []
+
+[dependencies]
+arrayvec = "0.7.6"
+binrw = "0.14.1"
+btleplug = "0.11.7"
+futures = "0.3.31"
+futures-signals = { version = "0.3.34", default-features = false }
+smart-default = "0.7.1"
+tracing = "0.1.41"
+uuid = "1.16.0"
+
+[dev-dependencies]
+eyre = "0.6.12"
+hex-literal = "1.0.0"
+tokio = { version = "1.44.2", features = ["macros", "rt-multi-thread", "signal"] }
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
