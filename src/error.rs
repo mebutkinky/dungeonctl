@@ -11,6 +11,8 @@ pub enum Error {
     ///
     /// This should never occur using an original device.
     MissingCharacteristic(Uuid),
+    /// A PawPrints V1.1 setting cannot be represented by the documented protocol.
+    InvalidPawPrintsSettings(&'static str),
     /// An error returned by [`btleplug`].
     Btleplug(btleplug::Error),
 }
@@ -21,6 +23,9 @@ impl std::fmt::Display for Error {
             Error::MissingCharacteristic(uuid) => {
                 write!(f, "missing device characteristic '{uuid}'")
             }
+            Error::InvalidPawPrintsSettings(message) => {
+                write!(f, "invalid PawPrints settings: {message}")
+            }
             Error::Btleplug(e) => write!(f, "{e}"),
         }
     }
@@ -30,6 +35,7 @@ impl std::error::Error for Error {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match self {
             Error::MissingCharacteristic(_) => None,
+            Error::InvalidPawPrintsSettings(_) => None,
             Error::Btleplug(e) => Some(e),
         }
     }

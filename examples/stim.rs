@@ -55,7 +55,7 @@ async fn main() -> eyre::Result<()> {
                     },
                     pulses: [Stereo {
                         a: Pulse {
-                            frequency: 200,
+                            frequency: 100,
                             intensity: 50
                                 + (50.0
                                     * ((std::f32::consts::TAU * (i as f32) / 20.0).sin() / 2.0

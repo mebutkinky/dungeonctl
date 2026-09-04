@@ -4,7 +4,7 @@ use std::{
 };
 
 use futures::{Stream, StreamExt};
-use futures_signals::signal::Signal;
+use futures_signals::signal::{Mutable, Signal, SignalExt};
 
 /// A reactive [`Signal`] whose value can also be read out directly.
 ///
@@ -22,12 +22,47 @@ pub(crate) struct DeviceState<T> {
     inner: Arc<RwLock<T>>,
 }
 
+#[derive(Clone, Debug)]
+pub(crate) struct StatePublisher<T> {
+    signal: Mutable<T>,
+    inner: Arc<RwLock<T>>,
+    update_lock: Arc<Mutex<()>>,
+}
+
 impl<T: Clone> DeviceState<T> {
-    pub(crate) fn new(stream: impl Stream<Item = T> + Send + Unpin + 'static, default: T) -> Self {
-        Self {
-            stream: Arc::new(Mutex::from(stream)),
+    pub(crate) fn channel(default: T) -> (Self, StatePublisher<T>)
+    where
+        T: PartialEq + Send + Sync + 'static,
+    {
+        let signal = Mutable::new(default.clone());
+        let state = Self {
+            stream: Arc::new(Mutex::new(signal.signal_cloned().to_stream())),
             inner: Arc::new(RwLock::new(default)),
-        }
+        };
+        let publisher = StatePublisher {
+            signal,
+            inner: Arc::clone(&state.inner),
+            update_lock: Arc::new(Mutex::new(())),
+        };
+
+        (state, publisher)
+    }
+}
+
+impl<T: Clone + PartialEq> StatePublisher<T> {
+    pub(crate) fn update(&self, update: impl FnOnce(&mut T)) {
+        self.update_with_hook(update, || {});
+    }
+
+    fn update_with_hook(&self, update: impl FnOnce(&mut T), before_publication: impl FnOnce()) {
+        let _update_guard = self.update_lock.lock().unwrap();
+        let value = {
+            let mut value = self.inner.write().unwrap();
+            update(&mut value);
+            value.clone()
+        };
+        before_publication();
+        self.signal.set_neq(value);
     }
 }
 
@@ -54,17 +89,6 @@ impl<T: Clone + PartialEq + Unpin> Signal for DeviceState<T> {
     ) -> std::task::Poll<Option<Self::Item>> {
         let mut stream = self.stream.lock().unwrap();
 
-        match pin!(&mut *stream).poll_next_unpin(cx) {
-            std::task::Poll::Pending | std::task::Poll::Ready(None) => std::task::Poll::Pending,
-            std::task::Poll::Ready(Some(v)) => {
-                let mut inner = self.inner.write().unwrap();
-                if v == *inner {
-                    std::task::Poll::Pending
-                } else {
-                    *inner = v.clone();
-                    std::task::Poll::Ready(Some(v))
-                }
-            }
-        }
+        pin!(&mut *stream).poll_next_unpin(cx)
     }
 }
