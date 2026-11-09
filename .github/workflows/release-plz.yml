@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev pkg-config libfreetype6-dev libfontconfig1-dev
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Run release-plz
@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev pkg-config libfreetype6-dev libfontconfig1-dev
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Run release-plz
