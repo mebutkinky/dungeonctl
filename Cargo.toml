@@ -1,5 +1,16 @@
-[package]
-name = "dungeonctl"
+[workspace]
+members = [
+    "dungeonctl-audio",
+    "dungeonctl-cli",
+    "dungeonctl-core",
+    "dungeonctl-device",
+    "dungeonctl-graph",
+    "dungeonctl-pattern",
+    "dungeonctl-utils",
+]
+resolver = "3"
+
+[workspace.package]
 version = "0.1.0"
 edition = "2024"
 description = "Control smart electronic toys created by DG-LAB"
@@ -7,6 +18,31 @@ repository = "https://github.com/mebutkinky/dungeonctl"
 license = "MIT OR Apache-2.0"
 keywords = ["dg-lab", "coyote", "estim", "e-stim", "bluetooth"]
 categories = ["api-bindings", "hardware-support"]
+
+[workspace.dependencies]
+arrayvec = "0.7.8"
+async-stream = "0.3.6"
+binrw = "0.15.2"
+btleplug = "0.13.5"
+bytemuck = "1.25.2"
+either = "1.19.0"
+eyre = "0.6.14"
+futures = "0.3.34"
+futures-signals = "0.3.34"
+ndarray = "0.17.2"
+svg = "0.18.0"
+tokio = "1.54.1"
+tracing = "0.1.44"
+
+[package]
+name = "dungeonctl"
+version.workspace = true
+edition.workspace = true
+description.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
 
 [features]
 full = ["audio-full", "device-full", "graph", "pattern", "stream"]
@@ -33,34 +69,6 @@ dungeonctl-graph = { version = "0.1.0", path = "dungeonctl-graph", optional = tr
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
-
-[workspace]
-members = [
-    "dungeonctl-audio",
-    "dungeonctl-cli",
-    "dungeonctl-core",
-    "dungeonctl-device",
-    "dungeonctl-graph",
-    "dungeonctl-pattern",
-    "dungeonctl-utils",
-]
-resolver = "3"
-
-[workspace.dependencies]
-arrayvec = "0.7.8"
-async-stream = "0.3.6"
-binrw = "0.15.2"
-btleplug = "0.13.5"
-bytemuck = "1.25.2"
-either = "1.19.0"
-eyre = "0.6.14"
-futures = "0.3.34"
-futures-signals = "0.3.34"
-ndarray = "0.17.2"
-svg = "0.18.0"
-tokio = "1.54.1"
-tracing = "0.1.44"
-
 
 [profile.dev.build-override]
 opt-level = 3
