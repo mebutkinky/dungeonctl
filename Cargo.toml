@@ -11,7 +11,7 @@ members = [
 resolver = "3"
 
 [workspace.package]
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 description = "Control smart electronic toys created by DG-LAB"
 repository = "https://github.com/mebutkinky/dungeonctl"
@@ -59,12 +59,12 @@ stream = ["pattern", "dungeonctl-pattern/stream"]
 symphonia = ["audio", "dungeonctl-audio/symphonia"]
 
 [dependencies]
-dungeonctl-audio = { version = "0.1.0", path = "dungeonctl-audio", optional = true }
-dungeonctl-core = { version = "0.1.0", path = "dungeonctl-core" }
-dungeonctl-device = { version = "0.1.0", path = "dungeonctl-device", optional = true }
-dungeonctl-pattern = { version = "0.1.0", path = "dungeonctl-pattern", optional = true }
-dungeonctl-utils = { version = "0.1.0", path = "dungeonctl-utils" }
-dungeonctl-graph = { version = "0.1.0", path = "dungeonctl-graph", optional = true }
+dungeonctl-audio = { version = "0.2.0", path = "dungeonctl-audio", optional = true }
+dungeonctl-core = { version = "0.2.0", path = "dungeonctl-core" }
+dungeonctl-device = { version = "0.2.0", path = "dungeonctl-device", optional = true }
+dungeonctl-pattern = { version = "0.2.0", path = "dungeonctl-pattern", optional = true }
+dungeonctl-utils = { version = "0.2.0", path = "dungeonctl-utils" }
+dungeonctl-graph = { version = "0.2.0", path = "dungeonctl-graph", optional = true }
 
 [package.metadata.docs.rs]
 all-features = true

@@ -19,9 +19,9 @@ test = ["eyre", "tokio"]
 arrayvec.workspace = true
 binrw.workspace = true
 btleplug.workspace = true
-dungeonctl-core = { version = "0.1.0", path = "../dungeonctl-core" }
-dungeonctl-pattern = { version = "0.1.0", path = "../dungeonctl-pattern", features = ["stream"] }
-dungeonctl-utils = { version = "0.1.0", path = "../dungeonctl-utils" }
+dungeonctl-core = { version = "0.2.0", path = "../dungeonctl-core" }
+dungeonctl-pattern = { version = "0.2.0", path = "../dungeonctl-pattern", features = ["stream"] }
+dungeonctl-utils = { version = "0.2.0", path = "../dungeonctl-utils" }
 eyre = { workspace = true, optional = true }
 futures.workspace = true
 futures-signals.workspace = true

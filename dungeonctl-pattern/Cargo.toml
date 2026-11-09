@@ -15,7 +15,7 @@ stream = ["dep:async-stream", "dep:arrayvec", "dep:futures"]
 arrayvec = { optional = true, workspace = true, default-features = true }
 async-stream = { optional = true, workspace = true }
 bytemuck = { features = ["derive"], workspace = true, default-features = true }
-dungeonctl-core = { version = "0.1.0", path = "../dungeonctl-core" }
+dungeonctl-core = { version = "0.2.0", path = "../dungeonctl-core" }
 futures = { optional = true, workspace = true, default-features = true }
 ndarray.workspace = true
 ndarray-stats = "0.7.0"
