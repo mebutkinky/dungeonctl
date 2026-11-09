@@ -1,0 +1,33 @@
+[package]
+name = "dungeonctl-device"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = []
+full = ["coyote3"]
+coyote3 = []
+test = ["eyre", "tokio"]
+# pawprints = []
+
+[dependencies]
+arrayvec.workspace = true
+binrw.workspace = true
+btleplug.workspace = true
+dungeonctl-core = { version = "0.1.0", path = "../dungeonctl-core" }
+dungeonctl-pattern = { version = "0.1.0", path = "../dungeonctl-pattern", features = ["stream"] }
+dungeonctl-utils = { version = "0.1.0", path = "../dungeonctl-utils" }
+eyre = { workspace = true, optional = true }
+futures.workspace = true
+futures-signals.workspace = true
+smart-default = "0.7.1"
+tracing.workspace = true
+tokio = { workspace = true, optional = true }
+uuid = "1.29.2"
+
+[dev-dependencies]
+hex-literal = "1.1.0"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

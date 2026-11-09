@@ -1,26 +1,31 @@
-//! This library implements the Bluetooth LE Protocols to control smart electronic toys created by DG-LAB.
+//! This library provides support for controlling smart electronic toys created by DG-LAB.
 //!
-//! Only the Coyote 3 is supported at the moment. Support for PawPrints is planned for the future,
-//! waiting for their protocol to be stabilized/documented.
+//! The [`device`](crate::device) subcrate implements the Bluetooth LE protocol to control the specific devices.
+//!
+//! The [`pattern`](crate::pattern) subcrate implements representations for e-stim patterns that can be send to the devices.
+//!
+//! The [`audio`](crate::audio) subcrate allows generating e-stim patterns from audio inputs.
+//!
+//! The [`graph`](crate::graph) subcrate provides visualizations of e-stim patterns.
+//!
+//! The [`core`](crate::core) and [`utils`](crate::utils) subcrates provide building blocks that are used by the other subcrates;
 
 #![cfg_attr(docsrs, feature(doc_auto_cfg))]
-#![deny(missing_docs)]
+#![warn(missing_docs)]
+// cargo-rdme can't resolve links without explicit target
+#![allow(rustdoc::redundant_explicit_links)]
 
-mod core;
-mod error;
+pub use dungeonctl_core as core;
+pub use dungeonctl_utils as utils;
 
-#[cfg(feature = "coyote3")]
-pub mod coyote3;
-// #[cfg(feature = "pawprints")]
-// pub mod pawprints;
+#[cfg(feature = "audio")]
+pub use dungeonctl_audio as audio;
 
-pub use btleplug;
-pub use futures_signals;
+#[cfg(feature = "device")]
+pub use dungeonctl_device as device;
 
-pub use self::{
-    core::{StateSignal, Stereo},
-    error::{Error, Result},
-};
+#[cfg(feature = "graph")]
+pub use dungeonctl_graph as graph;
 
-#[cfg(feature = "coyote3")]
-pub use self::coyote3::Coyote3;
+#[cfg(feature = "pattern")]
+pub use dungeonctl_pattern as pattern;

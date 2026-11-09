@@ -1,0 +1,14 @@
+[package]
+name = "dungeonctl-core"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+bytemuck = []
+
+[dependencies]
+binrw.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

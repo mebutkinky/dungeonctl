@@ -11,27 +11,42 @@ jobs:
     name: cargo fmt
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: cargo fmt --all -- --check
 
   clippy:
     name: cargo clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev
-      - run: cargo clippy --all-features
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev
+      - run: cargo clippy --workspace --all-features
 
   test:
     name: cargo test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev
-      - run: cargo test --all-features
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev
+      - run: cargo test --workspace --all-features
+
+  readme:
+    name: cargo rdme --check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install dependencies
+        uses: taiki-e/install-action@v2
+        with:
+          tool: |
+            cargo-rdme
+            just
+      - name: Install required toolchain
+        run: cargo rdme install-rust-toolchain-for-intralinks
+      - run: just check-readme

@@ -9,26 +9,62 @@ keywords = ["dg-lab", "coyote", "estim", "e-stim", "bluetooth"]
 categories = ["api-bindings", "hardware-support"]
 
 [features]
-default = []
-coyote3 = []
-# pawprints = []
+full = ["audio-full", "device-full", "graph", "pattern", "stream"]
+
+audio = ["dep:dungeonctl-audio"]
+audio-full = ["audio", "dungeonctl-audio/full", "pipewire", "symphonia"]
+coyote3 = ["device", "dungeonctl-device/coyote3"]
+device = ["dep:dungeonctl-device"]
+device-full = ["coyote3", "dungeonctl-device/full"]
+graph = ["dep:dungeonctl-graph"]
+pattern = ["dep:dungeonctl-pattern"]
+pipewire = ["audio", "dungeonctl-audio/pipewire"]
+stream = ["pattern", "dungeonctl-pattern/stream"]
+symphonia = ["audio", "dungeonctl-audio/symphonia"]
 
 [dependencies]
-arrayvec = "0.7.6"
-binrw = "0.14.1"
-btleplug = "0.11.7"
-futures = "0.3.31"
-futures-signals = { version = "0.3.34", default-features = false }
-smart-default = "0.7.1"
-tracing = "0.1.41"
-uuid = "1.16.0"
-
-[dev-dependencies]
-eyre = "0.6.12"
-hex-literal = "1.0.0"
-tokio = { version = "1.44.2", features = ["macros", "rt-multi-thread", "signal"] }
-tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+dungeonctl-audio = { version = "0.1.0", path = "dungeonctl-audio", optional = true }
+dungeonctl-core = { version = "0.1.0", path = "dungeonctl-core" }
+dungeonctl-device = { version = "0.1.0", path = "dungeonctl-device", optional = true }
+dungeonctl-pattern = { version = "0.1.0", path = "dungeonctl-pattern", optional = true }
+dungeonctl-utils = { version = "0.1.0", path = "dungeonctl-utils" }
+dungeonctl-graph = { version = "0.1.0", path = "dungeonctl-graph", optional = true }
 
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
+
+[workspace]
+members = [
+    "dungeonctl-audio",
+    "dungeonctl-cli",
+    "dungeonctl-core",
+    "dungeonctl-device",
+    "dungeonctl-graph",
+    "dungeonctl-pattern",
+    "dungeonctl-utils",
+]
+resolver = "3"
+
+[workspace.dependencies]
+arrayvec = "0.7.8"
+async-stream = "0.3.6"
+binrw = "0.15.2"
+btleplug = "0.13.5"
+bytemuck = "1.25.2"
+either = "1.19.0"
+eyre = "0.6.14"
+futures = "0.3.34"
+futures-signals = "0.3.34"
+ndarray = "0.17.2"
+svg = "0.18.0"
+tokio = "1.54.1"
+tracing = "0.1.44"
+
+
+[profile.dev.build-override]
+opt-level = 3
+
+[profile.release-debug]
+inherits = "release"
+debug = true
