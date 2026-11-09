@@ -10,11 +10,11 @@ categories.workspace = true
 
 [features]
 full = ["pipewire", "symphonia"]
-pipewire = ["dep:async-channel", "dep:bytemuck", "dep:pw"]
-symphonia = ["dep:async-channel", "dep:symphonia"]
+pipewire = ["dep:bytemuck", "dep:pw"]
+symphonia = ["dep:symphonia"]
 
 [dependencies]
-async-channel = { version = "2.5.0", optional = true }
+async-channel = "2.5.0"
 async-stream.workspace = true
 blocking = "1.7.0"
 bytemuck = { optional = true, workspace = true }
