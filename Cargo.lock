@@ -695,7 +695,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "dungeonctl-audio",
  "dungeonctl-core",

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0](https://github.com/mebutkinky/dungeonctl/compare/dungeonctl-v0.1.0...dungeonctl-v0.2.0) - 2026-11-09
+
+### Other
+
+- add additional system dependencies
+- Install system libraries for readme generation
+- Restructure project and add support for audio playback
+
 ## [0.1.0](https://github.com/mebutkinky/dungeonctl/releases/tag/v0.1.0) - 2025-04-06
 
 ### Other

@@ -18,6 +18,6 @@ tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
 either.workspace = true
 futures.workspace = true
 arrayvec.workspace = true
-dungeonctl = { version = "0.1.0", path = "..", features = ["full"] }
+dungeonctl = { version = "0.2.0", path = "..", features = ["full"] }
 indicatif = { version = "0.18.6", features = ["futures"] }
 tracing-indicatif = "0.3.14"
