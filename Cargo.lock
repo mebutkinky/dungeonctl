@@ -695,7 +695,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "dungeonctl-audio",
  "dungeonctl-core",
@@ -707,7 +707,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl-audio"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "async-channel",
  "async-stream",
@@ -734,7 +734,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl-cli"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "arrayvec",
  "camino",
@@ -752,14 +752,14 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl-core"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "binrw",
 ]
 
 [[package]]
 name = "dungeonctl-device"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "arrayvec",
  "binrw",
@@ -779,7 +779,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl-graph"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "dungeonctl-audio",
  "dungeonctl-pattern",
@@ -791,7 +791,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl-pattern"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "arrayvec",
  "async-stream",
@@ -805,7 +805,7 @@ dependencies = [
 
 [[package]]
 name = "dungeonctl-utils"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "futures",
  "futures-signals",

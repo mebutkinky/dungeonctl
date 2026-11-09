@@ -9,13 +9,13 @@ keywords.workspace = true
 categories.workspace = true
 
 [dependencies]
-dungeonctl-pattern = { version = "0.1.0", path = "../dungeonctl-pattern" }
+dungeonctl-pattern = { version = "0.2.0", path = "../dungeonctl-pattern" }
 eyre.workspace = true
 palette = "0.7.7"
 svg.workspace = true
 
 [dev-dependencies]
-dungeonctl-audio = { version = "0.1.0", path = "../dungeonctl-audio", features = ["symphonia"] }
+dungeonctl-audio = { version = "0.2.0", path = "../dungeonctl-audio", features = ["symphonia"] }
 tokio = { features = ["macros", "rt-multi-thread"], workspace = true, default-features = true }
 
 [package.metadata.docs.rs]
