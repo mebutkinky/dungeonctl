@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev pkg-config libfreetype6-dev libfontconfig1-dev
       - run: cargo clippy --workspace --all-features
 
   test:
@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev pkg-config libfreetype6-dev libfontconfig1-dev
       - run: cargo test --workspace --all-features
 
   readme:
@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev
+          sudo apt-get install libdbus-1-dev libpipewire-0.3-dev pkg-config libfreetype6-dev libfontconfig1-dev
       - name: Install dependencies
         uses: taiki-e/install-action@v2
         with:
