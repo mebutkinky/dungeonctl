@@ -15,7 +15,7 @@ palette = "0.7.7"
 svg.workspace = true
 
 [dev-dependencies]
-dungeonctl-audio = { path = "../dungeonctl-audio", features = ["symphonia"] }
+dungeonctl-audio = { version = "0.1.0", path = "../dungeonctl-audio", features = ["symphonia"] }
 tokio = { features = ["macros", "rt-multi-thread"], workspace = true, default-features = true }
 
 [package.metadata.docs.rs]
